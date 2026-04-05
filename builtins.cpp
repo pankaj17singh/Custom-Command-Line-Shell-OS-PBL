@@ -30,7 +30,6 @@ int run_builtin(const vector<string>& args) {
     }
     else if (cmd == "help") {
         cout << "Built-in commands: cd, pwd, exit, help\n";
-        cout << "Any other command runs as an external program.\n";
     }
     return 0;
 }
