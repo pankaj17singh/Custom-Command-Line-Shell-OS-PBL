@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <signal.h>      
 #include "parser.h"
 #include "builtins.h"
 #include "executor.h"
@@ -7,21 +8,24 @@ using namespace std;
 
 int main() {
     string input;
+    signal(SIGINT, SIG_IGN);
+    signal(SIGQUIT, SIG_IGN);
 
     while (true) {
-        cout << "Custom_shell> ";
+        cout << "Custom_Shell₹ ";
         flush(cout);
 
         if (!getline(cin, input)) break;
         if (input.empty()) continue;
 
-        Command cmd = parse(input);
-        if (cmd.args.empty()) continue;
+        vector<Command> commands = parse(input);
+        if (commands.empty()) continue;
+        if (commands[0].args.empty()) continue;
 
-        if (is_builtin(cmd.args[0]))
-            run_builtin(cmd);
+        if (commands.size() == 1 && is_builtin(commands[0].args[0]))
+            run_builtin(commands[0]);
         else
-            execute(cmd);
+            execute(commands);
     }
     return 0;
 }

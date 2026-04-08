@@ -29,8 +29,21 @@ int run_builtin(const Command& cmd) {
             perror("cd");
     }
     else if (command == "help") {
-        cout << "Built-in commands: cd, pwd, exit, help\n";
-        cout << "Any other command runs as an external program.\n";
+        cout << "\n";
+        cout << "  Custom Shell\n";
+        cout << "\n";
+        cout << "  BUILT-IN COMMANDS:\n";
+        cout << "    cd [path]     change directory\n";
+        cout << "    pwd           print working directory\n";
+        cout << "    help          show this help message\n";
+        cout << "    exit          exit the shell\n";
+        cout << "\n";
+        cout << "  SUPPORTED FEATURES:\n";
+        cout << "    cmd > file    redirect output to file\n";
+        cout << "    cmd >> file   append output to file\n";
+        cout << "    cmd < file    redirect input from file\n";
+        cout << "    cmd | cmd     pipe output to next command\n";
+        cout << "\n";
     }
     return 0;
 }
